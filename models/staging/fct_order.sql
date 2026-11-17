@@ -6,6 +6,6 @@ select
     c.customer_id,
     c.customer_name,
     c.city
-from {{ ref('stg_order') }} o
+from {{ ref('stg_orders') }} o
 left join {{ ref('stg_customer') }} c
     on o.customer_id = c.customer_id
