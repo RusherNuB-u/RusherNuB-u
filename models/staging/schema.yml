@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: ['placed', 'shipped', 'returned']
+
+  - name: fct_order
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: customer_id
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('stg_customer')
+                field: customer_id
+
+  - name: customer_summary
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
