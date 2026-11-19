@@ -23,5 +23,12 @@ models:
         data_tests:
           - relationships:
               arguments:
-                to: ref('stg_customers')
+                to: ref('stg_customer')
                 field: customer_id
+
+  - name: customer_summary
+    columns:
+      - name: customer_id
+        data_tests:
+          - unique
+          - not_null
